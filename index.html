@@ -560,115 +560,76 @@
   .team-bio p:last-child { margin-bottom: 0; }
 
   /* =========================================================
-     REFERENCES — flip cards
+     REFERENCES — encadré PDF format
      ========================================================= */
   .references { background: var(--cream); }
   .refs-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
   }
   .ref-card {
-    perspective: 1200px;
-    aspect-ratio: 1 / 1;
-    cursor: default;
-  }
-  .ref-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.7s cubic-bezier(0.4, 0.1, 0.2, 1);
-  }
-  .ref-card:hover .ref-inner,
-  .ref-card:focus-visible .ref-inner {
-    transform: rotateY(180deg);
-  }
-  .ref-face {
-    position: absolute;
-    inset: 0;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    background: #fff;
+    border: 1.5px solid rgba(14, 92, 58, 0.15);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 32px 28px;
-    border: 1px solid var(--line);
-  }
-  .ref-front {
-    background: var(--cream);
-    color: var(--anthracite);
-  }
-  .ref-back {
-    background: var(--green-deep);
-    color: var(--cream);
-    transform: rotateY(180deg);
-    border-color: var(--green-deep);
-    position: relative;
     overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
-  .ref-back::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: repeating-linear-gradient(
-      135deg,
-      rgba(255,255,255,0.012) 0px,
-      rgba(255,255,255,0.012) 1px,
-      transparent 1px,
-      transparent 9px
-    );
-    pointer-events: none;
+  .ref-card:hover {
+    box-shadow: 0 8px 32px rgba(14, 92, 58, 0.1);
+    transform: translateY(-2px);
   }
-  .ref-num {
+  .ref-logo-area {
+    padding: 28px 20px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 88px;
+    border-bottom: 1px solid rgba(14, 92, 58, 0.1);
+  }
+  .ref-company-name {
     font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 13px;
-    color: var(--gold);
-    letter-spacing: 0.05em;
-    align-self: flex-start;
-  }
-  .ref-back .ref-num { color: var(--gold-soft); position: relative; z-index: 1; }
-  .ref-name {
-    font-family: var(--font-serif);
-    font-size: clamp(22px, 2vw, 28px);
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
+    font-size: clamp(16px, 1.5vw, 22px);
+    font-weight: 600;
     color: var(--green-deep);
+    text-align: center;
+    line-height: 1.2;
   }
-  .ref-sector {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--anthracite-soft);
-    padding-top: 16px;
-    border-top: 1px solid var(--line);
-  }
-  .ref-back p {
-    font-size: 14px;
-    line-height: 1.65;
-    color: rgba(250,250,248,0.9);
-    position: relative;
-    z-index: 1;
+  .ref-mission-area {
+    padding: 16px 20px;
     flex: 1;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
-  .ref-year {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 13px;
-    color: var(--gold-soft);
+  .ref-mission-text {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--anthracite-soft);
+    text-align: center;
+    line-height: 1.55;
+    letter-spacing: 0.01em;
+  }
+  .ref-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 18px;
+    border-top: 1px solid rgba(14, 92, 58, 0.1);
+    background: rgba(14, 92, 58, 0.025);
+  }
+  .ref-audaxe-logo {
+    height: 18px;
+    width: auto;
+  }
+  .ref-date {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--anthracite-soft);
     letter-spacing: 0.05em;
-    align-self: flex-end;
-    padding-top: 16px;
-    border-top: 1px solid rgba(250,250,248,0.18);
-    width: 100%;
-    text-align: right;
-    position: relative;
-    z-index: 1;
   }
   .refs-note {
     margin-top: 56px;
@@ -821,6 +782,7 @@
     .about-grid { grid-template-columns: 1fr; gap: 56px; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
     .refs-grid { grid-template-columns: repeat(2, 1fr); }
+    .ref-company-name { font-size: 18px; }
     .team-grid { grid-template-columns: 1fr; gap: 56px; }
     .values-grid { grid-template-columns: repeat(2, 1fr); }
     .value:nth-child(2n) { border-right: none; }
@@ -1072,170 +1034,180 @@
       <span class="eyebrow">Nos références</span>
       <h2 class="section-title">Quelques opérations<br />récentes.</h2>
       <p style="margin-top: 24px; color: var(--anthracite-soft); font-size: 17px; line-height: 1.7; max-width: 52ch;">
-        Sélection d'interventions menées pour des entrepreneurs, des groupes industriels et des familles. Survolez chaque carte pour découvrir la mission.
+        Sélection d'interventions menées pour des entrepreneurs, des groupes industriels et des familles.
       </p>
     </div>
 
     <div class="refs-grid reveal">
-      <!-- 01 -->
-      <article class="ref-card" tabindex="0">
-        <div class="ref-inner">
-          <div class="ref-face ref-front">
-            <span class="ref-num">01</span>
-            <div class="ref-name">Petit Ami</div>
-            <span class="ref-sector">M&A Financial Advisor</span>
-          </div>
-          <div class="ref-face ref-back">
-            <span class="ref-num">01</span>
-            <p>Conseil financier exclusif du cédant dans le cadre d'une opération de fusion-acquisition.</p>
-            <span class="ref-year">2023</span>
-          </div>
+
+      <!-- CDK -->
+      <article class="ref-card">
+        <div class="ref-logo-area">
+          <span class="ref-company-name">CDK</span>
+        </div>
+        <div class="ref-mission-area">
+          <span class="ref-mission-text">M&amp;A Disposal Advisor</span>
+        </div>
+        <div class="ref-footer">
+          <img src="assets/audaxe-logo-transparent.png" class="ref-audaxe-logo" alt="Audaxe" />
+          <span class="ref-date">Déc. 2025</span>
         </div>
       </article>
 
-      <!-- 02 -->
-      <article class="ref-card" tabindex="0">
-        <div class="ref-inner">
-          <div class="ref-face ref-front">
-            <span class="ref-num">02</span>
-            <div class="ref-name">moOngy</div>
-            <span class="ref-sector">Financial Advisor</span>
-          </div>
-          <div class="ref-face ref-back">
-            <span class="ref-num">02</span>
-            <p>Accompagnement financier stratégique dans le cadre d'une opération de développement.</p>
-            <span class="ref-year">2023</span>
-          </div>
+      <!-- BIR Groupe -->
+      <article class="ref-card">
+        <div class="ref-logo-area">
+          <span class="ref-company-name">BIR Groupe</span>
+        </div>
+        <div class="ref-mission-area">
+          <span class="ref-mission-text">Financial Advisor in the context of ESCP launch</span>
+        </div>
+        <div class="ref-footer">
+          <img src="assets/audaxe-logo-transparent.png" class="ref-audaxe-logo" alt="Audaxe" />
+          <span class="ref-date">Nov. 2025</span>
         </div>
       </article>
 
-      <!-- 03 -->
-      <article class="ref-card" tabindex="0">
-        <div class="ref-inner">
-          <div class="ref-face ref-front">
-            <span class="ref-num">03</span>
-            <div class="ref-name">Forest</div>
-            <span class="ref-sector">Independent Valuation</span>
-          </div>
-          <div class="ref-face ref-back">
-            <span class="ref-num">03</span>
-            <p>Évaluation indépendante de la société, analyse multicritères et rapport d'expertise financière.</p>
-            <span class="ref-year">2023</span>
-          </div>
+      <!-- Boulevard de la Slim -->
+      <article class="ref-card">
+        <div class="ref-logo-area">
+          <span class="ref-company-name">Boulevard de la Slim</span>
+        </div>
+        <div class="ref-mission-area">
+          <span class="ref-mission-text">M&amp;A Disposal Advisor</span>
+        </div>
+        <div class="ref-footer">
+          <img src="assets/audaxe-logo-transparent.png" class="ref-audaxe-logo" alt="Audaxe" />
+          <span class="ref-date">Déc. 2025</span>
         </div>
       </article>
 
-      <!-- 04 -->
-      <article class="ref-card" tabindex="0">
-        <div class="ref-inner">
-          <div class="ref-face ref-front">
-            <span class="ref-num">04</span>
-            <div class="ref-name">Alltricks</div>
-            <span class="ref-sector">Financial Advisor</span>
-          </div>
-          <div class="ref-face ref-back">
-            <span class="ref-num">04</span>
-            <p>Conseil financier stratégique dans le cadre d'une opération de croissance externe.</p>
-            <span class="ref-year">2023</span>
-          </div>
+      <!-- Thécadème -->
+      <article class="ref-card">
+        <div class="ref-logo-area">
+          <span class="ref-company-name">Thécadème</span>
+        </div>
+        <div class="ref-mission-area">
+          <span class="ref-mission-text">Financial Advisor in the context of ESOP launch</span>
+        </div>
+        <div class="ref-footer">
+          <img src="assets/audaxe-logo-transparent.png" class="ref-audaxe-logo" alt="Audaxe" />
+          <span class="ref-date">Fév. 2025</span>
         </div>
       </article>
 
-      <!-- 05 -->
-      <article class="ref-card" tabindex="0">
-        <div class="ref-inner">
-          <div class="ref-face ref-front">
-            <span class="ref-num">05</span>
-            <div class="ref-name">HLD</div>
-            <span class="ref-sector">Independent Portfolio Valuation</span>
-          </div>
-          <div class="ref-face ref-back">
-            <span class="ref-num">05</span>
-            <p>Évaluation indépendante d'un portefeuille de participations pour le compte du holding familial.</p>
-            <span class="ref-year">2023</span>
-          </div>
+      <!-- Voyageurs du Monde -->
+      <article class="ref-card">
+        <div class="ref-logo-area">
+          <span class="ref-company-name">Voyageurs du Monde</span>
+        </div>
+        <div class="ref-mission-area">
+          <span class="ref-mission-text">ESOP Fund Valuation</span>
+        </div>
+        <div class="ref-footer">
+          <img src="assets/audaxe-logo-transparent.png" class="ref-audaxe-logo" alt="Audaxe" />
+          <span class="ref-date">Jan. 2025</span>
         </div>
       </article>
 
-      <!-- 06 -->
-      <article class="ref-card" tabindex="0">
-        <div class="ref-inner">
-          <div class="ref-face ref-front">
-            <span class="ref-num">06</span>
-            <div class="ref-name">Ritme Scientific Solutions</div>
-            <span class="ref-sector">Financial Advisor</span>
-          </div>
-          <div class="ref-face ref-back">
-            <span class="ref-num">06</span>
-            <p>Conseil financier dans le cadre d'une opération stratégique pour ce spécialiste des équipements scientifiques.</p>
-            <span class="ref-year">2023</span>
-          </div>
+      <!-- Suntory / Ricqlès -->
+      <article class="ref-card">
+        <div class="ref-logo-area">
+          <span class="ref-company-name">Suntory<br/>Ricqlès</span>
+        </div>
+        <div class="ref-mission-area">
+          <span class="ref-mission-text">M&amp;A Advisor — Disposal of Ricqlès</span>
+        </div>
+        <div class="ref-footer">
+          <img src="assets/audaxe-logo-transparent.png" class="ref-audaxe-logo" alt="Audaxe" />
+          <span class="ref-date">Déc. 2024</span>
         </div>
       </article>
 
-      <!-- 07 -->
-      <article class="ref-card" tabindex="0">
-        <div class="ref-inner">
-          <div class="ref-face ref-front">
-            <span class="ref-num">07</span>
-            <div class="ref-name">Fincley Consulting</div>
-            <span class="ref-sector">Independent Valuation</span>
-          </div>
-          <div class="ref-face ref-back">
-            <span class="ref-num">07</span>
-            <p>Mission d'évaluation indépendante de la société dans le cadre d'une opération de restructuration actionnariale.</p>
-            <span class="ref-year">2023</span>
-          </div>
+      <!-- HLD -->
+      <article class="ref-card">
+        <div class="ref-logo-area">
+          <span class="ref-company-name">HLD</span>
+        </div>
+        <div class="ref-mission-area">
+          <span class="ref-mission-text">Independent Portfolio Valuation</span>
+        </div>
+        <div class="ref-footer">
+          <img src="assets/audaxe-logo-transparent.png" class="ref-audaxe-logo" alt="Audaxe" />
+          <span class="ref-date">Mai 2024</span>
         </div>
       </article>
 
-      <!-- 08 -->
-      <article class="ref-card" tabindex="0">
-        <div class="ref-inner">
-          <div class="ref-face ref-front">
-            <span class="ref-num">08</span>
-            <div class="ref-name">Flexsi</div>
-            <span class="ref-sector">M&A Financial Advisor</span>
-          </div>
-          <div class="ref-face ref-back">
-            <span class="ref-num">08</span>
-            <p>Conseil financier exclusif lors d'un rapprochement stratégique dans le secteur de la data et de la performance digitale.</p>
-            <span class="ref-year">2022</span>
-          </div>
+      <!-- Suntory -->
+      <article class="ref-card">
+        <div class="ref-logo-area">
+          <span class="ref-company-name">Suntory</span>
+        </div>
+        <div class="ref-mission-area">
+          <span class="ref-mission-text">M&amp;A Advisor — Disposal</span>
+        </div>
+        <div class="ref-footer">
+          <img src="assets/audaxe-logo-transparent.png" class="ref-audaxe-logo" alt="Audaxe" />
+          <span class="ref-date">Fév. 2024</span>
         </div>
       </article>
 
-      <!-- 09 -->
-      <article class="ref-card" tabindex="0">
-        <div class="ref-inner">
-          <div class="ref-face ref-front">
-            <span class="ref-num">09</span>
-            <div class="ref-name">Payot Paris</div>
-            <span class="ref-sector">Management M&A Advisor</span>
-          </div>
-          <div class="ref-face ref-back">
-            <span class="ref-num">09</span>
-            <p>Conseil en M&A au bénéfice du management dans le cadre d'une opération de rachat par les dirigeants.</p>
-            <span class="ref-year">2022</span>
-          </div>
+      <!-- SCT -->
+      <article class="ref-card">
+        <div class="ref-logo-area">
+          <span class="ref-company-name">SCT</span>
+        </div>
+        <div class="ref-mission-area">
+          <span class="ref-mission-text">Independent Valuation</span>
+        </div>
+        <div class="ref-footer">
+          <img src="assets/audaxe-logo-transparent.png" class="ref-audaxe-logo" alt="Audaxe" />
+          <span class="ref-date">Sept. 2023</span>
         </div>
       </article>
 
-      <!-- 10 -->
-      <article class="ref-card" tabindex="0">
-        <div class="ref-inner">
-          <div class="ref-face ref-front">
-            <span class="ref-num">10</span>
-            <div class="ref-name">Esker</div>
-            <span class="ref-sector">Independent Valuation</span>
-          </div>
-          <div class="ref-face ref-back">
-            <span class="ref-num">10</span>
-            <p>Évaluation indépendante de la société cotée, délivrée dans le cadre d'une opération réglementée par l'AMF.</p>
-            <span class="ref-year">2022</span>
-          </div>
+      <!-- moOngy -->
+      <article class="ref-card">
+        <div class="ref-logo-area">
+          <span class="ref-company-name">moOngy</span>
+        </div>
+        <div class="ref-mission-area">
+          <span class="ref-mission-text">M&amp;A Financial Advisor</span>
+        </div>
+        <div class="ref-footer">
+          <img src="assets/audaxe-logo-transparent.png" class="ref-audaxe-logo" alt="Audaxe" />
+          <span class="ref-date">Oct. 2022</span>
         </div>
       </article>
+
+      <!-- Bel -->
+      <article class="ref-card">
+        <div class="ref-logo-area">
+          <span class="ref-company-name">Bel</span>
+        </div>
+        <div class="ref-mission-area">
+          <span class="ref-mission-text">M&amp;A Financial Advisor — Joint Venture in India</span>
+        </div>
+        <div class="ref-footer">
+          <img src="assets/audaxe-logo-transparent.png" class="ref-audaxe-logo" alt="Audaxe" />
+          <span class="ref-date">Déc. 2021</span>
+        </div>
+      </article>
+
+      <!-- Peugeot Invest -->
+      <article class="ref-card">
+        <div class="ref-logo-area">
+          <span class="ref-company-name">Peugeot Invest</span>
+        </div>
+        <div class="ref-mission-area">
+          <span class="ref-mission-text">Financial Advisor to Management</span>
+        </div>
+        <div class="ref-footer">
+          <img src="assets/audaxe-logo-transparent.png" class="ref-audaxe-logo" alt="Audaxe" />
+          <span class="ref-date">Avr. 2021</span>
+        </div>
+      </article>
+
     </div>
     <p class="refs-note reveal">
       <em>Liste non exhaustive · Toutes nos missions sont menées sous la plus stricte confidentialité.</em>
