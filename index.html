@@ -633,7 +633,8 @@
     transform-style: preserve-3d;
     transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .ref-card:hover .ref-card-inner {
+  .ref-card:hover .ref-card-inner,
+  .ref-card.flipped .ref-card-inner {
     transform: rotateY(180deg);
   }
 
@@ -972,7 +973,8 @@
   @media (max-width: 600px) {
     .services-grid { grid-template-columns: 1fr; }
     .refs-grid { grid-template-columns: 1fr; }
-    .ref-card { aspect-ratio: 16 / 10; }
+    .ref-card { min-height: 240px; }
+    .ref-card--two-logos { min-height: 280px; }
     .values-grid { grid-template-columns: 1fr; }
     .value { border-right: none; }
     .about-stat { padding: 40px 32px; min-height: 280px; }
@@ -1655,6 +1657,15 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  /* ====== Flip cards sur mobile (tap) ====== */
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    document.querySelectorAll('.ref-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+      });
+    });
+  }
 </script>
 
 </body>
