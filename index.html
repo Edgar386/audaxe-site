@@ -621,6 +621,7 @@
     perspective: 1000px;
     cursor: pointer;
     min-height: 300px;
+    touch-action: manipulation;
   }
   .ref-card--two-logos { min-height: 360px; }
 
@@ -1661,10 +1662,9 @@
   /* ====== Flip cards sur mobile (tap) ====== */
   if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
     document.querySelectorAll('.ref-card').forEach(card => {
-      card.addEventListener('touchend', (e) => {
-        e.preventDefault();
+      card.addEventListener('click', () => {
         card.classList.toggle('flipped');
-      }, { passive: false });
+      });
     });
   }
 </script>
