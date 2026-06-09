@@ -1664,17 +1664,12 @@
   /* ====== Flip cards sur mobile (tap) ====== */
   if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
     document.querySelectorAll('.ref-card').forEach(card => {
-      let startY = 0;
-      card.addEventListener('touchstart', (e) => {
-        startY = e.touches[0].clientY;
+      let scrolled = false;
+      card.addEventListener('touchmove', () => { scrolled = true; }, { passive: true });
+      card.addEventListener('touchend', () => {
+        if (!scrolled) card.classList.toggle('flipped');
+        setTimeout(() => { scrolled = false; }, 50);
       }, { passive: true });
-      card.addEventListener('touchend', (e) => {
-        const dy = Math.abs(e.changedTouches[0].clientY - startY);
-        if (dy < 10) {
-          e.preventDefault();
-          card.classList.toggle('flipped');
-        }
-      }, { passive: false });
     });
   }
 </script>
